@@ -1,0 +1,23 @@
+version: 2
+
+models: #views and/or tables
+  - name: commodities
+    description: "Staging table to historical data of commodities"
+    columns:
+      - name: date
+        description: "Date of the record in YYYY-MM-DD format"
+      - name: close_values
+        description: "Close price of the commodity with decimal precision of 4.2"
+      - name: ticker
+        description: "Ticker of the commodity"
+  - name: commodities_movements
+    description: "Staging table to commodities transactions data"
+    columns:
+      - name: date
+        description: "Date of the transaction in YYYY-MM-DD format"
+      - name: ticker
+        description: "Ticker of the commodity"
+      - name: action
+        description: "Type of the transaction (buy/sell)"
+      - name: quantity
+        description: "Transitioned quantity"

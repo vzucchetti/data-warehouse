@@ -13,7 +13,7 @@ renamed as (
     select
         cast("Date" as date) as date,
         "Close" as close_value,
-        simbol as ticker
+        symbol as ticker
     from
         source
 )

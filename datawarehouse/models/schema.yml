@@ -11,5 +11,16 @@ sources:
             description: "Date of the record"
           - name: Close
             description: "Close price of the commodity"
-          - name: simbol
-            description: "Simbol of the commodity"
+          - name: symbol
+            description: "Ticker of the commodity"
+      - name: commodities_movements
+        description: "Seed table"
+        columns:
+          - name: date
+            description: "Date of the transaction"
+          - name: ticker
+            description: "Ticker of the commodity"
+          - name: action
+            description: "Type of the transaction"
+          - name: quantity
+            description: "Transitioned quantity"
