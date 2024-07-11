@@ -8,9 +8,9 @@ To accomplish that, we'll do a *ELT process*, integrating *APIs to extract data 
 
 To start the project, we'll do the extraction of commodities data from Yahoo Finance using the library `yfinance`.
 
-After, the data was extracted we'll connect to our PostgreSQL database using the Render as server. To work the connection, it's needed a .env file with the environment variables of the database (host, port, name, user, password, schema).
+After, the data was extracted we'll connect to our PostgreSQL database with the `sqlalchemy`, built using the Render as server. To work, it's needed a `.env` file with the environment variables which will indicate the connection of the database (host, port, name, user, password, schema).
 
-The aforementioned steps are in the `extract_load.py` file. Run this under the `src` folder:
+The aforementioned steps are in the script `extract_load.py` file. Run this under the `src` folder:
 ```python
 python extract_load.py
 ```
