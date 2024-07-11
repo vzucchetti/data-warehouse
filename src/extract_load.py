@@ -23,17 +23,17 @@ DATABASE_URL = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NA
 engine = create_engine(DATABASE_URL)
 
 #Function to extract data from Yahoo Finance
-def find_commodities_data(simbol, period='5d', interval='1d'): #parameters for the function
-    ticker = yf.Ticker(simbol) #function to access the data from Yahoo Finance
+def find_commodities_data(symbol, period='5d', interval='1d'): #parameters for the function
+    ticker = yf.Ticker(symbol) #function to access the data from Yahoo Finance
     data = ticker.history(period=period, interval=interval)[['Close']] #return a dataframe with the close price of stock
-    data['symbol'] = simbol
+    data['symbol'] = symbol
     return data
 
 # Function to append data of find_commodities_data
 def find_all_commotities_data(commodities):
     all_data = [] #list to store the data
-    for simbol in commodities: #loop to extract data from all commodities
-        data = find_commodities_data(simbol)
+    for symbol in commodities: #loop to extract data from all commodities
+        data = find_commodities_data(symbol)
         all_data.append(data) #append the data to the list
     return pd.concat(all_data) #return the data in a single dataframe
 

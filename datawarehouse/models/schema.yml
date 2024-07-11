@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: database_hrso
+    schema: public
+    tables:
+      - name: commodities
+        description: "Table with historical data of commodities"
+        columns:
+          - name: Date
+            description: "Date of the record"
+          - name: Close
+            description: "Close price of the commodity"
+          - name: simbol
+            description: "Simbol of the commodity"
