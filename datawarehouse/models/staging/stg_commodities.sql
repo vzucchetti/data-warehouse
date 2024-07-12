@@ -2,7 +2,9 @@
 
 with source as (
     select
-        *
+        "Date",
+        "Close",
+        symbol
     from
         {{ source ('database_hrso','commodities') }}
 ),
@@ -18,8 +20,10 @@ renamed as (
         source
 )
 
--- query
+-- select from
 
 select 
-    * 
+    date,
+    close_value,
+    ticker
 from renamed
