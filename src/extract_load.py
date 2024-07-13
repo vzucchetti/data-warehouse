@@ -4,12 +4,13 @@ from sqlalchemy import create_engine
 from dotenv import load_dotenv
 import os
 
+# Load the environment variables from .env file
 load_dotenv()
 
 # Variable of commodities to extract from API
 commodities = ['CL=F', 'GC=F', 'SI=F'] #Crude Oil, Gold, Silver
 
-# Load the environment variables from .env file
+# Getting variables from .env file
 DB_HOST = os.getenv('DB_HOST_PROD')
 DB_PORT = os.getenv('DB_PORT_PROD')
 DB_NAME = os.getenv('DB_NAME_PROD')

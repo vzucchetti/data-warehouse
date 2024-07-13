@@ -1,0 +1,20 @@
+version: 2
+
+models: #views and/or tables
+  - name: dm_commodities
+    description: "Datamart of commodities with historical data and transactions"
+    columns:
+      - name: date
+        description: "Date of observation"
+      - name: ticker
+        description: "Ticker of the commodity"
+      - name: close_values
+        description: "Close price of the commodity"
+      - name: action
+        description: "Type of the transaction (buy/sell)"
+      - name: quantity
+        description: "Transitioned quantity"
+      - name: movement_value
+        description: "Value of the transaction"
+      - name: gain
+        description: "Gain/loss of the transaction"

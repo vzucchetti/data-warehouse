@@ -1,7 +1,7 @@
 version: 2
 
 models: #views and/or tables
-  - name: commodities
+  - name: stg_commodities
     description: "Staging table to historical data of commodities"
     columns:
       - name: date
@@ -10,7 +10,7 @@ models: #views and/or tables
         description: "Close price of the commodity with decimal precision of 4.2"
       - name: ticker
         description: "Ticker of the commodity"
-  - name: commodities_movements
+  - name: stg_commodities_movements
     description: "Staging table to commodities transactions data"
     columns:
       - name: date
