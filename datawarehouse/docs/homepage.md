@@ -1,4 +1,4 @@
-{% docs overview %}
+{% docs __overview__ %}
 
 ### README of the dbt-Core Project 
 
@@ -9,26 +9,32 @@ This project uses dbt (Data Build Tool) to manage and transform data from a comm
 ## Project Structure
 
 ### 1. Seeds
+
 Seeds are static data that are loaded into the Data Warehouse from CSV files. In this project, we use seeds to load commodity movements data.
 
 ### 2. Models
+
 Models define data transformation using SQL. They are divided into two main layers: staging and datamart.
 
-**Staging**
+#### Staging
+
 The staging layer is responsible for preparing and cleaning the data before it's loaded into the final analysis table.
 
 - **stg_commodities.sql:** handles and formats commodity data extracted from the API.
-- **stg_commodities_movements.sql:** handles and formats commodity movement data.
+- **stg_commodities_movements.sql:** handles and formats commodity movement data get from csv file seeded.
 
-**Datamart**
+#### Datamart
+
 The datamart layer is where the final analysis data is stored. They are based on the data prepared by the sataging layer.
 
 - **dm_commodities.sql:** integrates the processed commodity and movement data, creating a final data model for analysis.
 
 ### 3. Sources
+
 Sources are the data source tables or files that DBT uses to perform transformations.
 
 ### 4. Snapshots
+
 Snapshots are used to keep a history of how data changes over time.
 
 ## Directory Structure
@@ -85,16 +91,19 @@ database:
 ```
 
 **4. Run dbt Seeds:**
+
 ```bash
 dbt seed
 ```
 
 **5. Run the dbt transformation:**
+
 ```bash
 dbt run
 ```
 
 **6. Check Project Status:**
+
 ```bash
 dbt test
 ```
@@ -110,6 +119,7 @@ This model is responsible for processing and formatting the commodity data extra
 This model is responsible for processing and formatting commodity movement data taked from csv file seeded. It does the necessary cleaning and transformation to prepare the data for the datamart.
 
 **dm_commodities.sql**
+
 This model integrates the processed commodity and movement data, creating a final data model for analysis. It calculates metrics and aggregates data to facilitatre analysis on the dashboard.
 
 {% enddocs %}
