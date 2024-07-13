@@ -39,6 +39,7 @@ Snapshots are used to keep a history of how data changes over time.
 
 ## Directory Structure
 
+```plaintext
 ├── models
 │ ├── staging
 │ │ ├── stg_commodities.sql
@@ -49,6 +50,7 @@ Snapshots are used to keep a history of how data changes over time.
 │ └── commodities_movements.csv
 ├── dbt_project.yml
 └── README.md
+```
 
 ## Running the Project
 
