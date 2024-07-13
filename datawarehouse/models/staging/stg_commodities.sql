@@ -20,7 +20,7 @@ renamed as (
         source
 )
 
--- select from
+-- select * from
 
 select 
     date,
