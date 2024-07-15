@@ -3,6 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
 
 ### Python ###
+*.excalidraw
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

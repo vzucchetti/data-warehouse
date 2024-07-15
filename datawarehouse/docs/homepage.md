@@ -1,6 +1,6 @@
 {% docs __overview__ %}
 
-### README of the dbt-Core Project 
+### README of the dbt-Core Project
 
 # dbt-Core Project to Commodities Data Warehouse
 
@@ -25,17 +25,9 @@ The staging layer is responsible for preparing and cleaning the data before it's
 
 #### Datamart
 
-The datamart layer is where the final analysis data is stored. They are based on the data prepared by the sataging layer.
+The datamart layer is where the final analysis data is stored. They are based on the data prepared by the staging layer.
 
 - **dm_commodities.sql:** integrates the processed commodity and movement data, creating a final data model for analysis.
-
-### 3. Sources
-
-Sources are the data source tables or files that DBT uses to perform transformations.
-
-### 4. Snapshots
-
-Snapshots are used to keep a history of how data changes over time.
 
 ## Directory Structure
 
@@ -73,7 +65,7 @@ pip install dbt-core dbt-postgres
 ```
 
 **3. Configure dbt**
-    
+
 - Configure the `profiles.yml` to connect to your Data Warehouse. The file must be in the `~/.dbt/` directory or the directory specified by the environment variable `DBT_PROFILES_DIR`.
 
 `profiles.yml` example:
