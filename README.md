@@ -192,7 +192,6 @@ streamlit run app/app.py
 |   └── requirements.txt
 ├── README.md             # Project documentation
 └── pyproject.toml
-└── requirements.txt
 ```
 
 ## Libraries Used:
