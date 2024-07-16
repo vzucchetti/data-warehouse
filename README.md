@@ -61,7 +61,8 @@ graph TD;
         C1 --> D1
     end
 
-    A[(Data Warehouse)] --> |Transformation| Transform --> B[Dashboard]
+    A[(Data Warehouse)] --> |Transformation| A1
+    Transform --> B[Dashboard]
 ```
 
 ### 4. Dashboard
@@ -76,96 +77,97 @@ streamlit run app/app.py
 ## Installation
 
 - **1. Clone Repository:**
-```bash
-git clone <repository-URL>
-cd <repository-name>
-```
+    ```bash
+    git clone <repository-URL>
+    cd <repository-name>
+    ```
 
 - **2. Create and Activate Virtual Environment (Recommended):**
-```bash
-python -m venv .venv
-source .venv/Scripts/activate
-```
+    ```bash
+    python -m venv .venv
+    source .venv/Scripts/activate
+    ```
 
 - **3. Install Dependencies:**
-    - Install dependencies with `requirements.txt` in each of the subprojects directories (`src`,`datawarehouse`,`app`)
-```bash
-pip install -r requirements.txt
-```
+    Install dependencies with `requirements.txt` in each of the subprojects directories (`src`,`datawarehouse`,`app`)
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 - **4. Database Setup:**
     - Create a PostgreSQL database on a cloud server (Render, AWS, Azure, GCP, etc.).
     - Configure database connection variables in a `.env` file in the project's root directory.
 
-```env
-DB_HOST_PROD=<your_db_host>
-DB_PORT_PROD=<your_db_port>
-DB_NAME_PROD=<your_db_name>
-DB_USER_PROD=<your_db_user>
-DB_PASSWORD_PROD=<your_db_pass>
-DB_SCHEMA_PROD=<your_db_schema>
-```
+    ```env
+    DB_HOST_PROD=<your_db_host>
+    DB_PORT_PROD=<your_db_port>
+    DB_NAME_PROD=<your_db_name>
+    DB_USER_PROD=<your_db_user>
+    DB_PASSWORD_PROD=<your_db_pass>
+    DB_SCHEMA_PROD=<your_db_schema>
+    ```
 
 - **5. Extract and Load Data:**
-```bash
-python src/extract_load.py
-```
+    ```bash
+    python src/extract_load.py
+    ```
 
 - **6. dbt Setup:**
     - In your project directory, initialize dbt and configure profile to connect with database (detailed instruction on [dbt documentation](https://docs.getdbt.com/docs/get-started-dbt))
 
-```bash
-dbt init
-# Follow prompts to configure tour dbt
-```
+    ```bash
+    dbt init
+    # Follow prompts to configure tour dbt
+    ```
 
     - To check if everything is right with the connection to database, enter in the directory created and run a debug.
 
-```bash
-cd <dbt-directory>
-dbt debug
-```
+    ```bash
+    cd <dbt-directory>
+    dbt debug
+    ```
 - **7. Import csv with dbt:**
 
-To do seeds, it's need to get in the `seed` directory, has the csv file you want to insert in it, and run dbt:
-```bash
-cd <dbt-directory>/seed
-dbt seed
-```
+    To do seeds, it's need to get in the `seed` directory, has the csv file you want to insert in it, and run dbt:
+    ```bash
+    cd <dbt-directory>/seed
+    dbt seed
+    ```
 
 - **8. Run dbt Transformations:**
 
-    - Go back to main dbt directory and run dbt to create views from CTEs (`.sql` files):
-```bash
-cd ..
-dbt run
-```
+    Go back to main dbt directory and run dbt to create views from CTEs (`.sql` files):
+    ```bash
+    cd ..
+    dbt run
+    ```
 
 - **9. Launch Streamlit Dashboard:**
 
-    - Navigate back to project's root directory and starts the Streamlit:
-```bash
-cd ..
-streamlit run app/app.py
-```
+    Navigate back to project's root directory and starts the Streamlit:
+    ```bash
+    cd ..
+    streamlit run app/app.py
+    ```
 
 - **10. Generate Documentation for dbt (Optional)**
 
     - To create a documentation for dbt project run the dbt docs:
-```bash
-cd <dbt-directory>
-dbt docs generate
-dbt docs serve
-```
+    ```bash
+    cd <dbt-directory>
+    dbt docs generate
+    dbt docs serve
+    ```
 
     - To modify the overview of the project, insert `docs-paths: ["docs"]` in the `dbt_project.yml` file, create  in dbt directory a `docs` directory and a `homepage.md` into it. The `homepage.md` will contain the information you want to documentate for your project, although, the content need to be between:
-```md
-{% docs __overview__ %}
-<docs_content>
-{% enddocs %}
-```
+    ```md
+    {% docs __overview__ %}
+    <docs_content>
+    {% enddocs %}
+    ```
 
 ## Project Structure
+```plaintext
 ├── datawarehouse         # dbt project directory
 |   ├── dbt_project.yml
 |   ├── requirements.txt
@@ -191,6 +193,7 @@ dbt docs serve
 ├── README.md             # Project documentation
 └── pyproject.toml
 └── requirements.txt
+```
 
 ## Libraries Used:
 - `pandas`: to create dataframes and transform data.
