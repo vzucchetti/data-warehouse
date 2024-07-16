@@ -42,12 +42,15 @@ dbt-core is a open-source tool that documents your code, test it and use only SQ
 Here, it will have three layers of data modelling:
 
 #### Raw:
+
 Raw data extracted from API and loaded from csv file. Seed was used to load into the Data Warehouse commodities movements data.
 
 #### Staging:
+
 Cleaned and prepared data from the raw layer. Views are created for commodities (`stg_commodities.sql`) and commodity movements (`stg_commodities_movements.sql`).
 
 #### Datamart:
+
 Transformed data from the staging layer, optimized for analysis and dashboard construction. Created a unified view from a join between `stg_commodities` and `stg_commodities_movements` (`dm_commodities.sql`).
 
 More information on dbt project is documented [here](/datawarehouse/docs/homepage.md).
@@ -74,99 +77,8 @@ To run streamlit dashboard app:
 streamlit run app/app.py
 ```
 
-## Installation
-
-- **1. Clone Repository:**
-    ```bash
-    git clone <repository-URL>
-    cd <repository-name>
-    ```
-
-- **2. Create and Activate Virtual Environment (Recommended):**
-    ```bash
-    python -m venv .venv
-    source .venv/Scripts/activate
-    ```
-
-- **3. Install Dependencies:**
-    Install dependencies with `requirements.txt` in each of the subprojects directories (`src`,`datawarehouse`,`app`)
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-- **4. Database Setup:**
-    - Create a PostgreSQL database on a cloud server (Render, AWS, Azure, GCP, etc.).
-    - Configure database connection variables in a `.env` file in the project's root directory.
-
-    ```env
-    DB_HOST_PROD=<your_db_host>
-    DB_PORT_PROD=<your_db_port>
-    DB_NAME_PROD=<your_db_name>
-    DB_USER_PROD=<your_db_user>
-    DB_PASSWORD_PROD=<your_db_pass>
-    DB_SCHEMA_PROD=<your_db_schema>
-    ```
-
-- **5. Extract and Load Data:**
-    ```bash
-    python src/extract_load.py
-    ```
-
-- **6. dbt Setup:**
-    - In your project directory, initialize dbt and configure profile to connect with database (detailed instruction on [dbt documentation](https://docs.getdbt.com/docs/get-started-dbt))
-
-    ```bash
-    dbt init
-    # Follow prompts to configure tour dbt
-    ```
-
-    - To check if everything is right with the connection to database, enter in the directory created and run a debug.
-
-    ```bash
-    cd <dbt-directory>
-    dbt debug
-    ```
-- **7. Import csv with dbt:**
-
-    To do seeds, it's need to get in the `seed` directory, has the csv file you want to insert in it, and run dbt:
-    ```bash
-    cd <dbt-directory>/seed
-    dbt seed
-    ```
-
-- **8. Run dbt Transformations:**
-
-    Go back to main dbt directory and run dbt to create views from CTEs (`.sql` files):
-    ```bash
-    cd ..
-    dbt run
-    ```
-
-- **9. Launch Streamlit Dashboard:**
-
-    Navigate back to project's root directory and starts the Streamlit:
-    ```bash
-    cd ..
-    streamlit run app/app.py
-    ```
-
-- **10. Generate Documentation for dbt (Optional)**
-
-    - To create a documentation for dbt project run the dbt docs:
-    ```bash
-    cd <dbt-directory>
-    dbt docs generate
-    dbt docs serve
-    ```
-
-    - To modify the overview of the project, insert `docs-paths: ["docs"]` in the `dbt_project.yml` file, create  in dbt directory a `docs` directory and a `homepage.md` into it. The `homepage.md` will contain the information you want to documentate for your project, although, the content need to be between:
-    ```md
-    {% docs __overview__ %}
-    <docs_content>
-    {% enddocs %}
-    ```
-
 ## Project Structure
+
 ```plaintext
 ├── datawarehouse         # dbt project directory
 |   ├── dbt_project.yml
@@ -193,6 +105,96 @@ streamlit run app/app.py
 ├── README.md             # Project documentation
 └── pyproject.toml
 ```
+
+## Installation
+
+- **1. Clone Repository:**
+
+    ```bash
+    git clone <repository-URL>
+    cd <repository-name>
+    ```
+
+- **2. Create and Activate Virtual Environment (Recommended):**
+
+    ```bash
+    python -m venv .venv
+    source .venv/Scripts/activate
+    ```
+
+- **3. Install Dependencies:**
+
+    Install dependencies with `requirements.txt` in each of the subprojects directories (`src`,`datawarehouse`,`app`)
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+- **4. Database Setup:**
+
+    - Create a PostgreSQL database on a cloud server (Render, AWS, Azure, GCP, etc.).
+    - Configure database connection variables in a `.env` file in the project's root directory.
+
+    ```env
+    DB_HOST_PROD=<your_db_host>
+    DB_PORT_PROD=<your_db_port>
+    DB_NAME_PROD=<your_db_name>
+    DB_USER_PROD=<your_db_user>
+    DB_PASSWORD_PROD=<your_db_pass>
+    DB_SCHEMA_PROD=<your_db_schema>
+    ```
+
+- **5. Extract and Load Data:**
+
+    ```bash
+    python src/extract_load.py
+    ```
+
+- **6. dbt Setup:**
+
+    - In your project directory, initialize dbt and configure profile to connect with database (detailed instruction on [dbt documentation](https://docs.getdbt.com/docs/get-started-dbt))
+
+    ```bash
+    dbt init
+    # Follow prompts to configure tour dbt
+    ```
+
+    - To check if everything is right with the connection to database, enter in the directory created and run a debug.
+
+    ```bash
+    cd <dbt-directory>
+    dbt debug
+    ```
+
+- **7. Run dbt Transformations:**
+
+    Run dbt to create views from CTEs (`.sql` files):
+    ```bash
+    dbt run
+    ```
+
+- **8. Launch Streamlit Dashboard:**
+
+    Navigate back to project's root directory and starts the Streamlit:
+    ```bash
+    cd ..
+    streamlit run app/app.py
+    ```
+
+- **9. Generate Documentation for dbt (Optional)**
+
+    - To create a documentation for dbt project, run the dbt docs:
+    ```bash
+    cd <dbt-directory>
+    dbt docs generate
+    dbt docs serve
+    ```
+
+    - To modify the overview of the project, insert `docs-paths: ["docs"]` in the `dbt_project.yml` file, create  in dbt directory a `docs` directory and a `homepage.md` into it. The `homepage.md` will contain the information you want to documentate for your project, although, the content need to be between:
+    ```md
+    {% docs __overview__ %}
+    <docs_content>
+    {% enddocs %}
+    ```
 
 ## Libraries Used:
 - `pandas`: to create dataframes and transform data.

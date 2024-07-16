@@ -66,7 +66,7 @@ pip install dbt-core dbt-postgres
 
 **3. Configure dbt**
 
-- Configure the `profiles.yml` to connect to your Data Warehouse. The file must be in the `~/.dbt/` directory or the directory specified by the environment variable `DBT_PROFILES_DIR`.
+- Configure the `profiles.yml` to connect to your Data Warehouse. The file must be in the `~/.dbt/` directory or the directory specified by the environment variable `DBT_PROFILES_DIR`(`.env` file).
 
 `profiles.yml` example:
 ```yml
