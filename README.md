@@ -56,12 +56,12 @@ More information on dbt project is documented [here](/datawarehouse/docs/homepag
 graph TD;
     subgraph Transform
         A1[Raw data] --> |commodities| B1[stg_commodities.sql]
-        A1 |Seed| --> |commodities_movements| C1[stg_commodities_movements.sql]
+        A1 --> |commodities_movements| C1[stg_commodities_movements.sql]
         B1 --> D1[dm_commodities.sql]
         C1 --> D1
     end
 
-    A[(Data Warehouse)] --> |Transformation| A1
+    A[(Data Warehouse)] --> |Transformation| Transform
     Transform --> B[Dashboard]
 ```
 
